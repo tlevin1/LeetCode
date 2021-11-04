@@ -35,25 +35,28 @@ s only contains lower case English letters.
 
 
 class Solution:
-    #recursive solution to loop through string and find k duplicate characters
+    #brute force solution to loop through string and find k duplicate characters
     def removeDuplicates(self, s: str, k: int) -> str:
-       count_char = 1
-       for i in range(1, len(s)):
-           #increment char count
-           if s[i] == s[i-1]:
-               count_char+=1
-           else:
-               #reset
-               count_char = 1
-           #once found k chars
-           if count_char == k:
-               #remove from string
-               s=s.replace(s[i-k+1:i+1],"")
-               #recursive call until break out of loop
-               return self.removeDuplicates(s,k)
-        #once no more duplicates
-       return s
+       #get set of string
+       dist = set(s)
+       print(dist)
+       #append toremove chars list
+       toRemove = list()
+       for char in dist:
+           toRemove.append(char*k)
 
+       while True:
+            start = s
+            print('here')
+            for dup in toRemove:
+                print('loop')
+                if dup in s:
+                    s = s.replace(dup,"")
+                    #print('here')
+                #return when start and end are same
+            if start == s:
+                print(s)
+                return s
 
 
 
